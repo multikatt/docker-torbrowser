@@ -18,6 +18,8 @@ chsh -s /bin/bash docker
 cd /home/docker
 tar xf /home/docker/tor.tar.gz
 
+# Set javascript to off per default
+echo 'pref("javascript.enabled", false);' >> /home/docker/tor-browser_en-US/Data/Browser/profile.default/preferences/extension-overrides.js
 #Set all the files and subdirectories from /home/docker with docker permissions. 
 chown -R docker:docker /home/docker*
 

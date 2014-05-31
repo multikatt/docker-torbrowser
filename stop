@@ -1,6 +1,9 @@
 #!/bin/bash
 
-ID=$(cat ~/.tor-browser.pid)
+PID="~/.tor-browser.pid"
+ID=$(cat $PID)
 
 docker kill $ID
 docker rm $ID
+
+rm $PID
