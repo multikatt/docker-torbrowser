@@ -1,7 +1,18 @@
 #!/bin/bash
 
-ID=$(docker run -d paulczar/torbrowser)
-PORT=$(docker port $ID 22)
+
+ID=$(docker ps | grep tor | cut -d" " -f1,1)
+if [[ -z $ID ]]; then
+    echo "Starting container"
+    ID=$(docker run -d tor:$1)
+else
+    echo "Container already running, ID: $ID"
+fi
+
+IP=$(docker inspect $ID | sed -n 's/.*ress": "\(.*\)",$/\1/p')
+echo $IP
+if [ -z $IP ]; then exit 1; fi
+#PORT=$(docker port $ID 22)
 
 echo $ID > ~/.tor-browser.pid
 
