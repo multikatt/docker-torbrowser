@@ -18,15 +18,18 @@
 # Based on :- https://github.com/rogaha/docker-desktop
 
 
-FROM ubuntu:12.10
+FROM ubuntu:13.10
 MAINTAINER Paul Czarkowski "paul@paulcz.net"
 
 RUN apt-get update
+RUN apt-get -y upgrade
+RUN apt-get -y dist-upgrade
 
 # Set the env variable DEBIAN_FRONTEND to noninteractive
 ENV DEBIAN_FRONTEND noninteractive
 
 # Upstart and DBus have issues inside docker. We work around in order to install firefox.
+RUN rm /sbin/initctl
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -s /bin/true /sbin/initctl
 
 # Installing the environment required: xserver, xdm, flux box and ssh
