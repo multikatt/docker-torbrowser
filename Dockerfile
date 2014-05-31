@@ -38,8 +38,7 @@ RUN localedef -v -c -i en_US -f UTF-8 en_US.UTF-8 || :
 # Copy the files into the container
 ADD . /home/docker
 
-ADD https://www.torproject.org/dist/torbrowser/linux/tor-browser-gnu-linux-x86_64-2.4.18-rc-2-dev-en-US.tar.gz /home/docker/tor.tar.gz
-
+ADD https://www.torproject.org/dist/torbrowser/3.6.1/tor-browser-linux64-3.6.1_en-US.tar.xz /home/docker/tor.tar.xz
 EXPOSE 22
 # Start xdm and ssh services.
 CMD ["/bin/bash", "/home/docker/config.sh"]
