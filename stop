@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PID="~/.tor-browser.pid"
+PID=~/.tor-browser.pid
 if [ -f $PID ]; then
     ID=$(cat $PID)
     docker kill $ID
