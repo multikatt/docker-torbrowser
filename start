@@ -16,8 +16,9 @@ if [ -z $IP ]; then exit 1; fi
 
 echo $ID > ~/.tor-browser.pid
 
-echo "Run the following to get your SSH Password: "
-echo "docker logs $ID 2> /dev/null | head -1"
-echo "Then run the following to launch tor-browser: "
-echo ssh -oStrictHostKeyChecking=no -oCheckHostIP=no -YC -c blowfish docker@localhost -p $PORT ./tor-browser
+while [[ -z $PASS ]]; do PASS=$(docker logs $ID | head -1); done
+echo -e "SSH Credentials:\n$PASS"
+echo "Launching tor-browser: "
+
+ssh -oUserKnownHostsFile=/dev/null -oConnectionAttempts=100 -oConnectTimeout=60 -oStrictHostKeyChecking=no -oCheckHostIP=no -YC -c blowfish docker@$IP ./tor-browser
 
