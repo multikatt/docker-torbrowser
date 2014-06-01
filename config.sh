@@ -16,7 +16,7 @@ chsh -s /bin/bash docker
 
 
 cd /home/docker
-tar xf /home/docker/tor.tar.gz
+tar xf /home/docker/tor.tar.xz
 
 # Set javascript to off per default
 echo 'pref("javascript.enabled", false);' >> /home/docker/tor-browser_en-US/Data/Browser/profile.default/preferences/extension-overrides.js
