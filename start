@@ -1,10 +1,10 @@
 #!/bin/bash
 
 
-ID=$(docker ps | grep tor | cut -d" " -f1,1)
+ID=$(docker ps | grep "multikatt/docker-torbrowser" | cut -d" " -f1,1)
 if [[ -z $ID ]]; then
     echo "Starting container"
-    ID=$(docker run -d tor:$1)
+    ID=$(docker run -d "multikatt/docker-torbrowser")
 else
     echo "Container already running, ID: $ID"
 fi
